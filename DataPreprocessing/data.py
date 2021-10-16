@@ -45,11 +45,12 @@ def detrend_ts(ts_data, **kwargs):
     detrended_ts_data = [y[i]-trend[i] for i in range(0, len(ts_data))]
     return detrended_ts_data
 
-def take_diff_ts(ts_data, lag, final_ts_len):
+def take_diff_ts(data, ts_column, lag_column, lag, final_ts_len):
     ''' 
     Take the difference between present value and a lagged value.
     '''
     
-    temp = np.diff(ts_data, n=lag)
-    ts_data = ts_data[-final_ts_len:]
-    return ts_data
+    temp = np.diff(data[ts_column], n=lag)
+    data = data[-final_ts_len:]
+    data[lag_column] = temp[-final_ts_len:]
+    return data
