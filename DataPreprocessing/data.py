@@ -1,9 +1,10 @@
-import sys
-import os
+# import sys
+# import os
 
-module_path = os.path.abspath(os.path.join('..'))
-if module_path not in sys.path:
-    sys.path.append(module_path+"\\DataPreprocessing")
+# module_path = os.path.abspath(os.path.join('..'))
+
+# if module_path not in sys.path:
+#     sys.path.append(module_path+"\\DataPreprocessing")
 
 # sys.path.insert(0, 'DataPreprocessing')
 
@@ -25,7 +26,7 @@ def set_datetime(data, tz = 'Asia/Qatar', unit='s', utc=True):
         return datetime_column
 
     datetime_column = datetime_column.dt.tz_convert(tz)
-    return datetime_column
+    return datetime_column.dt.date
 
 def detrend_ts(ts_data, **kwargs):
     ''' 
